@@ -2,8 +2,6 @@
   description = "My NixOS Flake Configuration";
   
   inputs = {
-    # You might want to change this branch to match the version of NixOS you are currently using, 
-    # e.g., "github:NixOS/nixpkgs/nixos-23.11" or "nixos-24.05".
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05"; 
     
     wsf = {
@@ -23,6 +21,15 @@
 
     helium = {
       url = "github:FKouhai/helium2nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nil = {
+      url = "github:oxalica/nil";
+    };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

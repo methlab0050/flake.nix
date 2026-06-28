@@ -9,12 +9,14 @@ and now I gotta move to flakes
     - Dash to dock
     - WACK sonoma lockscreen
 - Try to save gnome extenions config
-- Add zen browser
+* Add zen browser
 - Add configs
     - Fish
     - Ghostty
     - Fastfetch
+    - Vim
 - Try niri
+- Something to sign pdfs with
 
 
 # Future hopes:

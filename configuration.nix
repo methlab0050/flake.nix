@@ -92,27 +92,30 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    pkgs.gnome-tweaks
+    gnome-tweaks
     vscodium
-    pkgs.ghostty
+    ghostty
     git
-    pkgs.colloid-icon-theme
-    pkgs.fastfetch
-    pkgs.nerd-fonts.arimo
-    pkgs.nerd-fonts.tinos
-    pkgs.nerd-fonts.caskaydia-mono
+    colloid-icon-theme
+    fastfetch
+    nerd-fonts.arimo
+    nerd-fonts.tinos
+    nerd-fonts.caskaydia-mono
     inputs.helium.defaultPackage.${system}
-    libreoffice-fresh
+    # libreoffice-fresh
     hunspell
     hunspellDicts.en_US
     hunspellDicts.en_CA
-    pkgs.onlyoffice-desktopeditors
+    onlyoffice-desktopeditors
+    inputs.nil.packages.${system}.default
+    inputs.zen-browser.packages.${system}.default
+    godot
   ];
 
-  fonts.packages = [ 
-    pkgs.nerd-fonts.arimo
-    pkgs.nerd-fonts.tinos
-    pkgs.nerd-fonts.caskaydia-mono
+  fonts.packages = with pkgs.nerd-fonts; [ 
+    arimo
+    tinos
+    caskaydia-mono
   ];
 
   xdg.terminal-exec = {
