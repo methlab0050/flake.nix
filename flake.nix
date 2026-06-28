@@ -10,20 +10,42 @@
       url = "github:daniel-g-carrasco/wayland-scroll-factor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nh = {
+      url = "github:nix-community/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    helium = {
+      url = "github:FKouhai/helium2nix/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, wsf, ... }: {
+  outputs = { self, nixpkgs, wsf, ... } @ inputs: {
     # Replace "nixos" here with your machine's actual hostname.
     # You can find your hostname in configuration.nix under `networking.hostName`
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         wsf.nixosModules.default
-        { programs.wsf.enable = true; }
+        { 
+          programs.wsf.enable = true;
+          programs.nh.enable = true;
+        }
         
         # This line is where your existing configuration gets imported!
         ./configuration.nix 
       ];
+
+      specialArgs = {
+        inherit inputs;
+      };
     };
   };
 }

@@ -15,9 +15,6 @@ and now I gotta move to flakes
     - Ghostty
     - Fastfetch
 - Try niri
-- Nerdfonts
-    - Arial and times new roman
-- Consider switching to helium?
 
 
 # Future hopes:

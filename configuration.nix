@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -100,6 +100,19 @@
     pkgs.fastfetch
     pkgs.nerd-fonts.arimo
     pkgs.nerd-fonts.tinos
+    pkgs.nerd-fonts.caskaydia-mono
+    inputs.helium.defaultPackage.${system}
+    libreoffice-fresh
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.en_CA
+    pkgs.onlyoffice-desktopeditors
+  ];
+
+  fonts.packages = [ 
+    pkgs.nerd-fonts.arimo
+    pkgs.nerd-fonts.tinos
+    pkgs.nerd-fonts.caskaydia-mono
   ];
 
   xdg.terminal-exec = {
