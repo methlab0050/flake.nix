@@ -110,6 +110,7 @@
     inputs.nil.packages.${system}.default
     inputs.zen-browser.packages.${system}.default
     godot
+    inputs.home-manager.packages.${system}.default
   ];
 
   fonts.packages = with pkgs.nerd-fonts; [ 
