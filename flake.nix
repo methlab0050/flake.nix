@@ -37,16 +37,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, wsf, ... } @ inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, ... } @ inputs: {
     # Replace "nixos" here with your machine's actual hostname.
     # You can find your hostname in configuration.nix under `networking.hostName`
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        nixos-hardware.nixosModules.framework-13th-gen-intel
         ({inputs, ...}: { 
-          imports = [wsf.nixosModules.default];
+          imports = [inputs.wsf.nixosModules.default];
           programs.wsf.enable = true;
           programs.nh.enable = true;
         })

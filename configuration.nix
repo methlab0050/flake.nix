@@ -111,6 +111,8 @@
     inputs.zen-browser.packages.${system}.default
     godot
     inputs.home-manager.packages.${system}.default
+    inputs.winapps.packages.${system}.winapps
+    inputs.winapps.packages."${system}".winapps-launcher
   ];
 
   fonts.packages = with pkgs.nerd-fonts; [ 
