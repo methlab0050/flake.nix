@@ -71,18 +71,19 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."mehtabs" = {
     isNormalUser = true;
     description = "Mehtab Singh";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
     packages = with pkgs; [
     #  thunderbird
     ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -127,6 +128,8 @@
   };
 
   programs.fish.enable = true;
+
+  programs.direnv.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
