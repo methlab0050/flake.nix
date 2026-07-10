@@ -1,9 +1,9 @@
 {
   description = "My NixOS Flake Configuration";
-  
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05"; 
-    
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+
     wsf = {
       url = "github:daniel-g-carrasco/wayland-scroll-factor";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +34,12 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
+      # home-manager keeps giving warnings about the release version,
+      # so I found the ref with the corresponding version
+      ref = "backport/release-26.05/9551";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -44,33 +49,47 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, ... } @ inputs: {
-    # Replace "nixos" here with your machine's actual hostname.
-    # You can find your hostname in configuration.nix under `networking.hostName`
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-hardware,
+      ...
+    }@inputs:
+    let
       system = "x86_64-linux";
-      modules = [
-        nixos-hardware.nixosModules.framework-13th-gen-intel
-        ({inputs, ...}: { 
-          imports = [inputs.wsf.nixosModules.default];
-          programs.wsf.enable = true;
-          programs.nh.enable = true;
-        })
-        inputs.home-manager.nixosModules.default
-        {
+    in
+    {
+      # Replace "nixos" here with your machine's actual hostname.
+      # You can find your hostname in configuration.nix under `networking.hostName`
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          nixos-hardware.nixosModules.framework-13th-gen-intel
+          (
+            { inputs, ... }:
+            {
+              imports = [ inputs.wsf.nixosModules.default ];
+              programs.wsf.enable = true;
+              programs.nh.enable = true;
+            }
+          )
+          inputs.home-manager.nixosModules.default
+          {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.mehtabs = ./home.nix;
-        }
-        
-        # This line is where your existing configuration gets imported!
-        ./configuration.nix 
-      ];
+          }
 
-      specialArgs = {
-        inherit inputs;
+          # This line is where your existing configuration gets imported!
+          ./configuration.nix
+        ];
+
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+        };
       };
     };
-  };
 }

@@ -70,9 +70,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
   
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -93,27 +90,23 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    git
+
+
     gnome-tweaks
+    colloid-icon-theme
+    
     vscodium
     ghostty
-    git
-    colloid-icon-theme
     fastfetch
-    nerd-fonts.arimo
-    nerd-fonts.tinos
-    nerd-fonts.caskaydia-mono
+    imhex
     inputs.helium.defaultPackage.${system}
-    # libreoffice-fresh
-    hunspell
-    hunspellDicts.en_US
-    hunspellDicts.en_CA
+
     onlyoffice-desktopeditors
     inputs.nil.packages.${system}.default
     inputs.zen-browser.packages.${system}.default
     godot
     inputs.home-manager.packages.${system}.default
-    inputs.winapps.packages.${system}.winapps
-    inputs.winapps.packages."${system}".winapps-launcher
   ];
 
   fonts.packages = with pkgs.nerd-fonts; [ 
