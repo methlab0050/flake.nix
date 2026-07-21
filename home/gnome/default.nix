@@ -4,12 +4,33 @@
   lib,
   ...
 }:
+let
+  sonomaMeta = builtins.fromJSON (builtins.readFile "${inputs.sonoma-lockscreen}/metadata.json");
+
+  sonoma-lockscreen = pkgs.stdenvNoCC.mkDerivation {
+    pname = "wack-sonoma-lockscreen";
+    version = "unstable";
+    extensionUuid = sonomaMeta.uuid;
+
+    src = inputs.sonoma-lockscreen;
+
+    dontBuild = true;
+
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}
+      cp -r * $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}/
+      runHook postInstall
+    '';
+  };
+in
 {
   home.packages = with pkgs; [
     gnome-tweaks
     colloid-icon-theme
     gnomeExtensions.advanced-alttab-window-switcher
     gnomeExtensions.dash-to-dock
+    sonoma-lockscreen
   ];
 
   xdg.dataFile = {
@@ -29,41 +50,30 @@
   dconf.settings = {
     # GNOME Appearance & Theme Settings
     "org/gnome/desktop/background" = {
-      picture-options = "zoom";
       picture-uri = "file:///${./background.png}";
       picture-uri-dark = "file:///${./background.png}";
     };
-    # TODO - config background
 
     "org/gnome/desktop/interface" = {
-      accent-color = "blue";
       clock-format = "12h";
-      color-scheme = "default";
-      enable-hot-corners = false;
-      gtk-theme = "Adwaita";
       icon-theme = "Colloid";
-      locate-pointer = false;
       show-battery-percentage = true;
-      text-scaling-factor = 1.0;
     };
 
     "org/gnome/desktop/sound" = {
-      event-sounds = true;
       theme-name = "bigsur";
     };
+
     "org/gnome/desktop/wm/preferences" = {
-      auto-raise = false;
       button-layout = ":minimize,maximize,close";
-      focus-mode = "click";
     };
 
     # GNOME Shell Layout & Launcher Settings
     "org/gnome/shell" = {
-      command-history = [ "r" ];
       enabled-extensions = [
-        "dash-to-dock@micxgx.gmail.com"
-        "wack-lockscreen-clock@rinzler69-wastaken.github.com"
-        "advanced-alt-tab@G-dH.github.com"
+        pkgs.gnomeExtensions.dash-to-dock.extensionUuid
+        pkgs.gnomeExtensions.advanced-alttab-window-switcher.extensionUuid
+        sonomaMeta.uuid
       ];
       favorite-apps = [
         "com.mitchellh.ghostty.desktop"
@@ -71,12 +81,6 @@
         "codium.desktop"
         "zen-beta.desktop"
       ];
-      last-selected-power-profile = "power-saver";
-      welcome-dialog-last-shown-version = "50.1";
-    };
-
-    "org/gnome/tweaks" = {
-      show-extensions-notice = false;
     };
 
     # GNOME Extensions Configuration
@@ -125,9 +129,7 @@
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
-      always-center-icons = false;
       animation-time = 0.1;
-      apply-custom-theme = false;
       autohide = true;
       autohide-in-fullscreen = true;
       background-opacity = 0.8;
@@ -135,30 +137,24 @@
       custom-theme-shrink = true;
       customize-alphas = true;
       dash-max-icon-size = 48;
-      dock-fixed = false;
       dock-position = "BOTTOM";
       extend-height = false;
       height-fraction = 0.9;
       hide-delay = 0.05;
-      icon-size-fixed = false;
-      intellihide = true;
       intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
       isolate-monitors = true;
       isolate-workspaces = true;
       max-alpha = 0.6;
-      middle-click-action = "launch";
+      min-alpha=0.4;
       multi-monitor = true;
       preferred-monitor = -2;
       preferred-monitor-by-connector = "eDP-1";
       pressure-threshold = 0.0;
-      preview-size-scale = 0.0;
       require-pressure-to-show = true;
       scroll-action = "cycle-windows";
       shift-click-action = "minimize";
-      shift-middle-click-action = "launch";
       show-delay = 0.25;
       show-dock-urgent-notify = true;
-      show-trash = true;
       transparency-mode = "DYNAMIC";
     };
 
@@ -170,28 +166,6 @@
     };
 
     # System & Desktop Functionality
-    "org/gnome/desktop/a11y/magnifier" = {
-      cross-hairs-length = 58;
-    };
-
-    "org/gnome/desktop/a11y/mouse" = {
-      dwell-click-enabled = false;
-    };
-
-    "org/gnome/desktop/applications/terminal" = {
-      exec = "xdg-terminal-exec";
-    };
-
-    "org/gnome/desktop/break-reminders/eyesight" = {
-      play-sound = true;
-    };
-
-    "org/gnome/desktop/break-reminders/movement" = {
-      duration-seconds = lib.gvariant.mkUint32 300;
-      interval-seconds = lib.gvariant.mkUint32 1800;
-      play-sound = true;
-    };
-
     "org/gnome/desktop/input-sources" = {
       sources = [
         (lib.gvariant.mkTuple [
@@ -199,7 +173,6 @@
           "us"
         ])
       ];
-      # xkb-options = [ ];
     };
 
     "org/gnome/desktop/media-handling" = {
@@ -207,24 +180,14 @@
     };
 
     "org/gnome/mutter" = {
-      dynamic-workspaces = true;
-      edge-tiling = true;
       experimental-features = [
         "scale-monitor-framebuffer"
         "xwayland-native-scaling"
       ];
-      overlay-key = "Super";
-      workspaces-only-on-primary = true;
-    };
-
-    "org/gnome/settings-daemon/plugins/color" = {
-      night-light-enabled = false;
-      night-light-schedule-automatic = false;
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
       click-method = "areas";
-      two-finger-scrolling-enabled = true;
     };
 
     # Window Manager & Shell Keybindings

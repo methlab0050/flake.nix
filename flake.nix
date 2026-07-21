@@ -52,6 +52,16 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sonoma-lockscreen = {
+      url = "github:rinzler69-wastaken/wack-sonoma-lockscreen";
+      flake = false;
+    };
+
+    bigsur-sound-theme = {
+      url = "github:gxanshu/macos-bigsur-sound-theme-linux";
+      flake = false;
+    };
   };
 
   outputs =

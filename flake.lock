@@ -350,10 +350,26 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "wack-sonoma-lockscreen": "wack-sonoma-lockscreen",
+        "sonoma-lockscreen": "sonoma-lockscreen",
         "winapps": "winapps",
         "wsf": "wsf",
         "zen-browser": "zen-browser"
+      }
+    },
+    "sonoma-lockscreen": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784576559,
+        "narHash": "sha256-kZKEIRt71rJd5ONrNfwAYbqjKkeuQfn9O+50vyvcbas=",
+        "owner": "rinzler69-wastaken",
+        "repo": "wack-sonoma-lockscreen",
+        "rev": "3f08241e6b6a91fd5355a0ccedf861c70c6a4588",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rinzler69-wastaken",
+        "repo": "wack-sonoma-lockscreen",
+        "type": "github"
       }
     },
     "systems": {
@@ -413,22 +429,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "wack-sonoma-lockscreen": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1784488501,
-        "narHash": "sha256-StoY7rquQ72sMcya7kk8b12SSydAi8pnVBigUjLJ0MM=",
-        "owner": "rinzler69-wastaken",
-        "repo": "wack-sonoma-lockscreen",
-        "rev": "277b666c43faad1fede41a2b4ae12b1b947eff0f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rinzler69-wastaken",
-        "repo": "wack-sonoma-lockscreen",
         "type": "github"
       }
     },
