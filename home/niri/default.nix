@@ -1,26 +1,36 @@
 { pkgs, lib, ... }:
 
 {
+  home.file.".config/niri/config-original.kdl".source = "${pkgs.niri}/share/doc/niri/config.kdl";
+
   programs.waybar = {
     enable = true;
   };
 
   home.packages = with pkgs; [
     swaybg
-  ] ++ (lib.optional (pkgs ? noctalia) pkgs.noctalia);
+    xwayland-satellite
+    noctalia-shell
+  ];
 
-  programs.niri = {
-    enable = true;
-    settings = {
-      spawn-at-startup = [
-        { command = [ "waybar" ]; }
-        { command = [ "noctalia" ]; }
-        { command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${./background.jpg}" "-m" "fill" ]; }
-      ];
-      binds = {
-        "Mod+Return".action.spawn = [ "ghostty" ];
-        "Mod+T".action.spawn = [ "ghostty" ];
-      };
-    };
+  home.file.".config/niri/config.kdl" = {
+    force = true;
+    text = ''
+      spawn-at-startup "waybar"
+      spawn-at-startup "noctalia-shell"
+      spawn-at-startup "xwayland-satellite"
+      spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-i" "${./background.jpg}" "-m" "fill"
+
+      binds {
+          Mod+Return { spawn "ghostty"; }
+          Mod+T { spawn "ghostty"; }
+      }
+
+      input {
+        touchpad {
+          natural-scroll
+        }
+      }
+    '';
   };
 }
