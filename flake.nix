@@ -47,6 +47,11 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -58,6 +63,12 @@
     }@inputs:
     let
       system = "x86_64-linux";
+      # Change this eventually
+      hostName = "nixos";
+      specialArgs = {
+        inherit system;
+        inherit inputs;
+      };
     in
     {
       # Replace "nixos" here with your machine's actual hostname.
@@ -78,8 +89,11 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.mehtabs = ./home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit system;
+            };
+            home-manager.users.mehtabs = ./home;
           }
 
           # This line is where your existing configuration gets imported!

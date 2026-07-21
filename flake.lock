@@ -1,5 +1,42 @@
 {
   "nodes": {
+    "antigravity-nix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783671102,
+        "narHash": "sha256-0HGdmT8LpUpn2s8pkp4FewHclRZM+BEOWnz1ekNuPcU=",
+        "owner": "jacopone",
+        "repo": "antigravity-nix",
+        "rev": "40ae76f9b845c3b84cae66a017db8a0a9c934a63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jacopone",
+        "repo": "antigravity-nix",
+        "type": "github"
+      }
+    },
+    "bigsur-sound-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773492996,
+        "narHash": "sha256-+BuQc9LO517Y8RDRtCoYSFezya+hSPmwgu3hzk/j1zg=",
+        "owner": "gxanshu",
+        "repo": "macos-bigsur-sound-theme-linux",
+        "rev": "88275891dc8ce9c14f69431eddbb3d04d5069e53",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gxanshu",
+        "repo": "macos-bigsur-sound-theme-linux",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -84,10 +121,28 @@
         "type": "github"
       }
     },
+    "flake-utils_4": {
+      "inputs": {
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "helium": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -286,6 +341,8 @@
     },
     "root": {
       "inputs": {
+        "antigravity-nix": "antigravity-nix",
+        "bigsur-sound-theme": "bigsur-sound-theme",
         "helium": "helium",
         "home-manager": "home-manager",
         "nh": "nh",
@@ -293,6 +350,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
+        "wack-sonoma-lockscreen": "wack-sonoma-lockscreen",
         "winapps": "winapps",
         "wsf": "wsf",
         "zen-browser": "zen-browser"
@@ -343,10 +401,41 @@
         "type": "github"
       }
     },
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "wack-sonoma-lockscreen": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784488501,
+        "narHash": "sha256-StoY7rquQ72sMcya7kk8b12SSydAi8pnVBigUjLJ0MM=",
+        "owner": "rinzler69-wastaken",
+        "repo": "wack-sonoma-lockscreen",
+        "rev": "277b666c43faad1fede41a2b4ae12b1b947eff0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rinzler69-wastaken",
+        "repo": "wack-sonoma-lockscreen",
+        "type": "github"
+      }
+    },
     "winapps": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_3",
         "nix-filter": "nix-filter",
         "nixpkgs": [
           "nixpkgs"
@@ -368,7 +457,7 @@
     },
     "wsf": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ]
