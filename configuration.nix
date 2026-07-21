@@ -2,13 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -28,7 +34,10 @@
   services.fwupd.enable = true;
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Set your time zone.
   time.timeZone = "America/Edmonton";
@@ -70,15 +79,19 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."mehtabs" = {
     isNormalUser = true;
     description = "Mehtab Singh";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "kvm"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -87,29 +100,39 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    git
+  environment.systemPackages =
+    with pkgs;
+    [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      #  wget
 
+      gnome-tweaks
+      colloid-icon-theme
 
-    gnome-tweaks
-    colloid-icon-theme
-    
-    vscodium
-    ghostty
-    fastfetch
-    imhex
-    inputs.helium.defaultPackage.${system}
+      vscodium
+      ghostty
+      fastfetch
+      imhex
+      inputs.helium.defaultPackage.${system}
 
-    onlyoffice-desktopeditors
-    inputs.nil.packages.${system}.default
-    inputs.zen-browser.packages.${system}.default
-    godot
-    inputs.home-manager.packages.${system}.default
-  ];
+      onlyoffice-desktopeditors
+      libreoffice-fresh
+      hunspell
+      hunspellDicts.en_US
+      hunspellDicts.en_CA
+      inkscape
+      godot
+    ]
+    ++ (map (pkg: pkg.packages.${system}.default) (
+      with inputs;
+      [
+        nil
+        zen-browser
+        home-manager
+      ]
+    ));
 
-  fonts.packages = with pkgs.nerd-fonts; [ 
+  fonts.packages = with pkgs.nerd-fonts; [
     arimo
     tinos
     caskaydia-mono
@@ -117,12 +140,18 @@
 
   xdg.terminal-exec = {
     enable = true;
-    settings.default = ["ghostty.desktop"];
+    settings.default = [ "ghostty.desktop" ];
   };
 
   programs.fish.enable = true;
 
   programs.direnv.enable = true;
+
+  programs.git.enable = true;
+
+  programs.steam.enable = true;
+
+  programs.nh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
