@@ -106,9 +106,6 @@
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       #  wget
 
-      gnome-tweaks
-      colloid-icon-theme
-
       vscodium
       ghostty
       fastfetch
@@ -153,7 +150,7 @@
 
   programs.nh.enable = true;
 
-  programs.niri.enable = true;
+  # programs.niri.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

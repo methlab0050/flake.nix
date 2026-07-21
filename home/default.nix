@@ -8,7 +8,7 @@
 
   imports = [
     ./gnome
-    ./niri
+    # ./niri
   ];
   
   home.stateVersion = "26.05";
