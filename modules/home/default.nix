@@ -7,8 +7,9 @@
 {
 
   imports = [
-    ./gnome
-    # ./niri
+    ./apps
+    ./desktop
+    ./shell
   ];
   
   home.stateVersion = "26.05";
@@ -18,7 +19,6 @@
   # programs.home-manager.enable = true;
 
   home.packages = [
-    inputs.antigravity-nix.packages.${system}.google-antigravity-cli
     pkgs.mission-center
     pkgs.discord
   ];

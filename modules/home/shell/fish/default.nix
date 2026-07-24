@@ -1,0 +1,1 @@
+{config, lib, ...}: lib.mkIf config.programs.fish.enable {} 

@@ -1,8 +1,6 @@
 { pkgs, lib, ... }:
 
 {
-  home.file.".config/niri/config-original.kdl".source = "${pkgs.niri}/share/doc/niri/config.kdl";
-
   programs.waybar = {
     enable = true;
   };
@@ -24,6 +22,7 @@
       binds {
           Mod+Return { spawn "ghostty"; }
           Mod+T { spawn "ghostty"; }
+          Mod { toggle-overview; }
       }
 
       input {

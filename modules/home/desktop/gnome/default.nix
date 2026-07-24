@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   lib,
+  system,
   ...
 }:
 let
@@ -76,9 +77,9 @@ in
         sonomaMeta.uuid
       ];
       favorite-apps = [
-        "com.mitchellh.ghostty.desktop"
+        "com.mitchellh.ghostty"
         "org.gnome.Nautilus.desktop"
-        "codium.desktop"
+        "vscodium.desktop"
         "zen-beta.desktop"
       ];
     };

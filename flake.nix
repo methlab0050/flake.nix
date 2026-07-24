@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wsf = {
       url = "github:daniel-g-carrasco/wayland-scroll-factor";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,11 +48,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,17 +68,12 @@
     {
       self,
       nixpkgs,
-      nixos-hardware,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       # Change this eventually
       hostName = "nixos";
-      specialArgs = {
-        inherit system;
-        inherit inputs;
-      };
     in
     {
       # Replace "nixos" here with your machine's actual hostname.
@@ -86,28 +81,14 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          inputs.wsf.nixosModules.default
-          {
-              programs.wsf.enable = true;
-          }
-          inputs.home-manager.nixosModules.default
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              inherit system;
-            };
-            home-manager.users.mehtabs = ./home;
-          }
-
-          # This line is where your existing configuration gets imported!
-          ./configuration.nix
+          ./hosts/framework
+          ./modules
         ];
 
         specialArgs = {
           inherit inputs;
           inherit system;
+          inherit hostName;
         };
       };
     };
