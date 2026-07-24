@@ -77,9 +77,9 @@ in
         sonomaMeta.uuid
       ];
       favorite-apps = [
-        "com.mitchellh.ghostty"
+        "com.mitchellh.ghostty.desktop"
         "org.gnome.Nautilus.desktop"
-        "vscodium.desktop"
+        "codium.desktop"
         "zen-beta.desktop"
       ];
     };
