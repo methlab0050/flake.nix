@@ -4,8 +4,7 @@
   lib,
   system,
   ...
-}:
-let
+}: let
   sonomaMeta = builtins.fromJSON (builtins.readFile "${inputs.sonoma-lockscreen}/metadata.json");
 
   sonoma-lockscreen = pkgs.stdenvNoCC.mkDerivation {
@@ -24,15 +23,20 @@ let
       runHook postInstall
     '';
   };
-in
-{
-  home.packages = with pkgs; [
-    gnome-tweaks
-    colloid-icon-theme
-    gnomeExtensions.advanced-alttab-window-switcher
-    gnomeExtensions.dash-to-dock
+
+  extensions = with pkgs.gnomeExtensions; [
+    advanced-alttab-window-switcher
+    dash-to-dock
+    custom-hot-corners-extended
     sonoma-lockscreen
   ];
+in {
+  home.packages = with pkgs;
+    [
+      gnome-tweaks
+      colloid-icon-theme
+    ]
+    ++ extensions;
 
   xdg.dataFile = {
     "sounds/bigsur".source = "${inputs.bigsur-sound-theme}/theme/bigsur";
@@ -57,11 +61,13 @@ in
 
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
+      enable-hot-corners = false;
       icon-theme = "Colloid";
       show-battery-percentage = true;
     };
 
     "org/gnome/desktop/sound" = {
+      event-sounds = true;
       theme-name = "bigsur";
     };
 
@@ -71,11 +77,7 @@ in
 
     # GNOME Shell Layout & Launcher Settings
     "org/gnome/shell" = {
-      enabled-extensions = [
-        pkgs.gnomeExtensions.dash-to-dock.extensionUuid
-        pkgs.gnomeExtensions.advanced-alttab-window-switcher.extensionUuid
-        sonomaMeta.uuid
-      ];
+      enabled-extensions = map (ext: ext.extensionUuid) extensions;
       favorite-apps = [
         "com.mitchellh.ghostty.desktop"
         "org.gnome.Nautilus.desktop"
@@ -115,6 +117,7 @@ in
       switcher-popup-status = false;
       switcher-popup-sync-filter = true;
       switcher-popup-theme = 1;
+      switcher-popup-tooltip-title = 1;
       switcher-popup-wrap = true;
       switcher-ws-thumbnails = 2;
       win-switch-mark-minimized = false;
@@ -146,7 +149,7 @@ in
       isolate-monitors = true;
       isolate-workspaces = true;
       max-alpha = 0.6;
-      min-alpha=0.4;
+      min-alpha = 0.4;
       multi-monitor = true;
       preferred-monitor = -2;
       preferred-monitor-by-connector = "eDP-1";
@@ -164,6 +167,16 @@ in
       enable-unblank = false;
       esc-to-sleep = true;
       lockscreen-mode = "wack";
+    };
+
+    "org/gnome/shell/extensions/custom-hot-corners-extended/misc" = {
+      keyboard-shortcuts = [
+        "reorder-ws-prev <Control><Super>Left"
+        "reorder-ws-next <Control><Super>Right"
+      ];
+      show-osd-monitor-indexes = false;
+      supported-active-extensions = ["aatws"];
+      panel-menu-enable = false;
     };
 
     # System & Desktop Functionality
@@ -189,26 +202,26 @@ in
 
     "org/gnome/desktop/peripherals/touchpad" = {
       click-method = "areas";
+      two-finger-scrolling-enabled = true;
     };
 
     # Window Manager & Shell Keybindings
     "org/gnome/desktop/wm/keybindings" = {
-      minimize = [ ];
-      raise-or-lower = [ "<Super>m" ];
-      switch-applications = [ ];
-      switch-applications-backward = [ ];
-      switch-to-workspace-down = [ "disabled" ];
-      switch-to-workspace-left = [ "<Alt><Super>Left" ];
-      switch-to-workspace-right = [ "<Alt><Super>Right" ];
-      switch-to-workspace-up = [ "disabled" ];
-      switch-windows = [ "<Super>Tab" ];
-      switch-windows-backward = [ "<Shift><Super>Tab" ];
+      minimize = [];
+      raise-or-lower = ["<Super>m"];
+      switch-applications = [];
+      switch-applications-backward = [];
+      switch-to-workspace-down = ["disabled"];
+      switch-to-workspace-left = ["<Alt><Super>Left"];
+      switch-to-workspace-right = ["<Alt><Super>Right"];
+      switch-to-workspace-up = ["disabled"];
+      switch-windows = ["<Super>Tab"];
+      switch-windows-backward = ["<Shift><Super>Tab"];
     };
 
     "org/gnome/shell/keybindings" = {
-      show-screenshot-ui = [ "<Shift><Super>s" ];
-      toggle-message-tray = [ "<Super>v" ];
+      show-screenshot-ui = ["<Shift><Super>s"];
+      toggle-message-tray = ["<Super>v"];
     };
   };
-
 }

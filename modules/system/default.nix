@@ -1,7 +1,7 @@
-{ ... }: {
+{...}: {
   imports = [
     ./audio
-    # ./compatibility
+    ./compatibility
     ./desktop
     ./programs.nix
     ./shell

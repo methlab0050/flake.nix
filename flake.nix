@@ -64,42 +64,41 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      # Change this eventually
-      hostName = "nixos";
-
-      specialArgs = {
-        inherit inputs;
-        inherit hostName;
-        inherit system;
-      };
-    in
-    {
-      # Replace "nixos" here with your machine's actual hostname.
-      # You can find your hostname in configuration.nix under `networking.hostName`
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        inherit specialArgs;
-        modules = [
-          ./hosts/framework
-          ./modules/system
-        ];
-      };
-
-      homeConfigurations.mehtabs = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = specialArgs;
-        modules = [
-          ./modules/home
-        ];
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    # Change this eventually
+    hostName = "nixos";
+    pkgs = nixpkgs.legacyPackages.${system};
+    specialArgs = {
+      inherit inputs;
+      inherit hostName;
+      inherit system;
     };
+  in {
+    formatter.${system} = pkgs.alejandra;
+
+    # Replace "nixos" here with your machine's actual hostname.
+    # You can find your hostname in configuration.nix under `networking.hostName`
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      inherit system;
+      inherit specialArgs;
+      modules = [
+        ./hosts/framework
+        ./modules/system
+      ];
+    };
+
+    homeConfigurations.mehtabs = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = specialArgs;
+      modules = [
+        ./modules/home
+      ];
+    };
+  };
 }

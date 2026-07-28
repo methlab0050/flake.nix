@@ -1,10 +1,14 @@
-{ pkgs, inputs, system, ... }: {
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   programs.direnv.enable = true;
   programs.git.enable = true;
   programs.steam.enable = true;
 
-  environment.systemPackages =
-    with pkgs;
+  environment.systemPackages = with pkgs;
     [
       imhex
       inputs.helium.defaultPackage.${system}
@@ -12,13 +16,11 @@
       godot
     ]
     ++ (map (pkg: pkg.packages.${system}.default) (
-      with inputs;
-      [
+      with inputs; [
         nil
         zen-browser
       ]
     ));
-
 
   fonts.packages = with pkgs.nerd-fonts; [
     arimo
