@@ -68,28 +68,38 @@
     {
       self,
       nixpkgs,
+      home-manager,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       # Change this eventually
       hostName = "nixos";
+
+      specialArgs = {
+        inherit inputs;
+        inherit hostName;
+        inherit system;
+      };
     in
     {
       # Replace "nixos" here with your machine's actual hostname.
       # You can find your hostname in configuration.nix under `networking.hostName`
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+        inherit specialArgs;
         modules = [
           ./hosts/framework
-          ./modules
+          ./modules/system
         ];
+      };
 
-        specialArgs = {
-          inherit inputs;
-          inherit system;
-          inherit hostName;
-        };
+      homeConfigurations.mehtabs = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = specialArgs;
+        modules = [
+          ./modules/home
+        ];
       };
     };
 }
