@@ -1,0 +1,25 @@
+{ ... }:
+{
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "meth";
+        email = "methlab006@gmail.com";
+      };
+
+      init.defaultBranch = "main";
+      merge.conflictstyle = "zdiff3";
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    options = {
+      navigate = true;
+      dark = true;
+      line-numbers = true;
+    };
+    enableGitIntegration = true;
+  };
+}

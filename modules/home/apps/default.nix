@@ -4,5 +4,6 @@
     ./office
     ./vscodium
     ./zen
+    ./git
   ];
 }

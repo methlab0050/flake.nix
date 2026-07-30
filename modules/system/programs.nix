@@ -5,7 +5,6 @@
   ...
 }: {
   programs.direnv.enable = true;
-  programs.git.enable = true;
   programs.steam.enable = true;
 
   environment.systemPackages = with pkgs;
