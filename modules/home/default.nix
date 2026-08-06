@@ -13,8 +13,11 @@
 
   programs.home-manager.enable = true;
 
-  home.packages = [
-    pkgs.mission-center
-    pkgs.discord
+  home.packages = with pkgs; [
+    mission-center
+    discord
+    imhex
+    inkscape
+    godot
   ];
 }

@@ -3,23 +3,15 @@
   inputs,
   system,
   ...
-}: {
-  programs.direnv.enable = true;
+}:
+{
   programs.steam.enable = true;
 
-  environment.systemPackages = with pkgs;
-    [
-      imhex
-      inputs.helium.defaultPackage.${system}
-      inkscape
-      godot
-    ]
-    ++ (map (pkg: pkg.packages.${system}.default) (
-      with inputs; [
-        nil
-        zen-browser
-      ]
-    ));
+  environment.systemPackages = with inputs; [
+    helium.defaultPackage.${system}
+    nil.packages.${system}.default
+    zen-browser.packages.${system}.default
+  ];
 
   fonts.packages = with pkgs.nerd-fonts; [
     arimo
