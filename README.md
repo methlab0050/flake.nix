@@ -1,7 +1,6 @@
 # TODO:
 - Add configs
     - zen
-    - git
 * Something to sign pdfs with
 - windows support
 
