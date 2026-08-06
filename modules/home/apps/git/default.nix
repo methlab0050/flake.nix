@@ -11,6 +11,12 @@
       init.defaultBranch = "main";
       merge.conflictstyle = "zdiff3";
     };
+
+    ignores = [                                                                                                                              
+      ".direnv"                                                                                                                              
+      "*.swp"   
+      ".env"                                                                                                                             
+    ];   
   };
 
   programs.delta = {
