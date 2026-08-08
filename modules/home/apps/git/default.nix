@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.git = {
     enable = true;
     settings = {
@@ -12,11 +11,12 @@
       merge.conflictstyle = "zdiff3";
     };
 
-    ignores = [                                                                                                                              
-      ".direnv"                                                                                                                              
-      "*.swp"   
-      ".env"                                                                                                                             
-    ];   
+    ignores = [
+      ".direnv"
+      "*.swp"
+      ".env"
+      ".devenv"
+    ];
   };
 
   programs.delta = {

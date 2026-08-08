@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{pkgs-unstable, ...}: {
   home.packages = [
-    pkgs.devenv
+    pkgs-unstable.devenv
   ];
 
   programs.direnv.enable = true;
