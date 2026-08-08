@@ -9,7 +9,7 @@
     inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

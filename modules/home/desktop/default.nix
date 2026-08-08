@@ -2,7 +2,6 @@
   inputs,
   pkgs,
   lib,
-  system,
   ...
 }: let
   sonomaMeta = builtins.fromJSON (builtins.readFile "${inputs.sonoma-lockscreen}/metadata.json");
