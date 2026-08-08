@@ -1,10 +1,6 @@
-{...}: {
-  imports = [
-    ./fish.nix
-  ];
-
-  xdg.terminal-exec = {
+{pkgs, ...}: {
+  programs.fish = {
     enable = true;
-    settings.default = ["ghostty.desktop"];
   };
+  users.defaultUserShell = pkgs.fish;
 }
