@@ -159,6 +159,7 @@ in {
       show-delay = 0.25;
       show-dock-urgent-notify = true;
       transparency-mode = "DYNAMIC";
+      hot-keys = false;
     };
 
     "org/gnome/shell/extensions/wack-lockscreen-clock" = {
@@ -216,11 +217,21 @@ in {
       switch-to-workspace-up = ["disabled"];
       switch-windows = ["<Super>Tab"];
       switch-windows-backward = ["<Shift><Super>Tab"];
+      switch-to-workspace-1 = ["<Super>1"];
+      switch-to-workspace-2 = ["<Super>2"];
+      switch-to-workspace-3 = ["<Super>3"];
+      switch-to-workspace-4 = ["<Super>4"];
+      switch-to-workspace-5 = ["<Super>5"];
     };
 
     "org/gnome/shell/keybindings" = {
       show-screenshot-ui = ["<Shift><Super>s"];
       toggle-message-tray = ["<Super>v"];
+      switch-to-application-1 = [];
+      switch-to-application-2 = [];
+      switch-to-application-3 = [];
+      switch-to-application-4 = [];
+      switch-to-application-5 = [];
     };
   };
 }
