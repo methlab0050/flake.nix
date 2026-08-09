@@ -7,5 +7,6 @@
     ./shell
     ./nix.nix
     ./user.nix
+    ./localization
   ];
 }
