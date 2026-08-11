@@ -1,0 +1,229 @@
+# Monokai Dimmed theme for Helix Editor
+# Faithfully converted from VS Code Monokai Dimmed theme
+
+# --- Syntax Scopes ---
+"attribute" = { fg = "token_tag_attribute" }
+
+"comment" = { fg = "token_comment" }
+"comment.line" = { fg = "token_comment" }
+"comment.block" = { fg = "token_comment" }
+"comment.documentation" = { fg = "token_comment" }
+
+"constant" = { fg = "token_constant_builtin" }
+"constant.builtin" = { fg = "token_constant_builtin" }
+"constant.builtin.boolean" = { fg = "token_constant_builtin" }
+"constant.numeric" = { fg = "token_number" }
+"constant.numeric.integer" = { fg = "token_number" }
+"constant.numeric.float" = { fg = "token_number" }
+"constant.character" = { fg = "token_constant_user" }
+"constant.character.escape" = { fg = "token_constant_user" }
+"constant.other" = { fg = "token_constant_user" }
+
+"function" = { fg = "token_function_name" }
+"function.builtin" = { fg = "token_storage" }
+"function.method" = { fg = "token_function_name" }
+"function.macro" = { fg = "token_function_name" }
+"function.special" = { fg = "token_function_special" }
+
+"keyword" = { fg = "token_keyword" }
+"keyword.control" = { fg = "token_keyword_control" }
+"keyword.control.conditional" = { fg = "token_keyword_control" }
+"keyword.control.repeat" = { fg = "token_keyword_control" }
+"keyword.control.import" = { fg = "token_keyword_control" }
+"keyword.control.return" = { fg = "token_keyword_control" }
+"keyword.control.exception" = { fg = "token_keyword_control" }
+"keyword.operator" = { fg = "token_keyword_control" }
+"keyword.directive" = { fg = "token_keyword_control" }
+"keyword.function" = { fg = "token_keyword_control" }
+"keyword.storage" = { fg = "token_storage" }
+"keyword.storage.type" = { fg = "token_storage" }
+"keyword.storage.modifier" = { fg = "token_storage" }
+
+"operator" = { fg = "token_keyword_control" }
+
+"type" = { fg = "token_class_name" }
+"type.builtin" = { fg = "token_support" }
+"type.enum" = { fg = "token_class_name" }
+"type.enum.variant" = { fg = "token_constant_user" }
+"type.parameter" = { fg = "token_variable" }
+"structure" = { fg = "token_class_name" }
+"namespace" = { fg = "token_class_name" }
+
+"variable" = { fg = "token_variable" }
+"variable.builtin" = { fg = "token_variable_lang" }
+"variable.parameter" = { fg = "token_number" }
+"variable.other.member" = { fg = "token_storage" }
+"variable.other.field" = { fg = "token_storage" }
+"variable.other" = { fg = "token_variable" }
+
+"string" = { fg = "token_string" }
+"string.regexp" = { fg = "token_string" }
+"string.special" = { fg = "token_string" }
+"string.special.symbol" = { fg = "token_string" }
+"string.special.path" = { fg = "token_string" }
+"string.special.url" = { fg = "token_string" }
+
+"punctuation" = { fg = "fg" }
+"punctuation.delimiter" = { fg = "fg" }
+"punctuation.bracket" = { fg = "#d8d8d8" }
+"punctuation.special" = { fg = "token_string_embedded" }
+
+"markup.heading" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.heading.1" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.heading.3" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.heading.4" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.heading.5" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.heading.6" = { fg = "token_tag_attribute", modifiers = ["bold"] }
+"markup.list" = { fg = "token_string" }
+"markup.bold" = { fg = "token_variable", modifiers = ["bold"] }
+"markup.italic" = { fg = "token_variable", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "token_link" }
+"markup.link.text" = { fg = "token_link" }
+"markup.link.label" = { fg = "token_link" }
+"markup.quote" = { fg = "token_storage", modifiers = ["italic"] }
+"markup.raw" = { fg = "token_markup_raw" }
+"markup.raw.inline" = { fg = "token_markup_raw" }
+"markup.raw.block" = { fg = "token_markup_raw" }
+"markup.inserted" = { fg = "token_diff_inserted" }
+"markup.deleted" = { fg = "token_diff_deleted" }
+"markup.changed" = { fg = "token_diff_changed" }
+
+"tag" = { fg = "token_variable" }
+"tag.builtin" = { fg = "token_variable" }
+"tag.attribute" = { fg = "token_tag_attribute" }
+"tag.delimiter" = { fg = "token_variable" }
+
+"special" = { fg = "token_string_embedded" }
+"invalid" = { fg = "token_invalid" }
+
+# --- User Interface (UI) ---
+"ui.background" = { bg = "bg" }
+"ui.text" = { fg = "fg" }
+"ui.text.focus" = { fg = "bright_white", modifiers = ["bold"] }
+"ui.text.inactive" = { fg = "tab_inactive" }
+"ui.text.info" = { fg = "diag_info" }
+
+"ui.cursor" = { fg = "bg", bg = "cursor_orange" }
+"ui.cursor.primary" = { fg = "bg", bg = "cursor_orange" }
+"ui.cursor.secondary" = { fg = "bg", bg = "token_comment" }
+"ui.cursor.match" = { bg = "#4747a1" }
+
+"ui.selection" = { bg = "selection" }
+"ui.selection.primary" = { bg = "selection" }
+
+"ui.cursorline.primary" = { bg = "line_highlight" }
+"ui.cursorline.secondary" = { bg = "header_bg" }
+
+"ui.linenr" = { fg = "guide" }
+"ui.linenr.selected" = { fg = "#949494", modifiers = ["bold"] }
+
+"ui.statusline" = { fg = "bright_white", bg = "status_bg" }
+"ui.statusline.inactive" = { fg = "tab_inactive", bg = "tab_bg" }
+"ui.statusline.normal" = { fg = "bg", bg = "border_blue", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg", bg = "ansi_green", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "bg", bg = "cursor_orange", modifiers = ["bold"] }
+
+"ui.popup" = { fg = "#CCCCCC", bg = "popup_bg" }
+"ui.popup.info" = { fg = "#CCCCCC", bg = "popup_bg" }
+"ui.window" = { fg = "border_dark" }
+"ui.help" = { fg = "#CCCCCC", bg = "popup_bg" }
+
+"ui.menu" = { fg = "#CCCCCC", bg = "popup_bg" }
+"ui.menu.selected" = { fg = "#ffffff", bg = "list_active", modifiers = ["bold"] }
+"ui.menu.scroll" = { fg = "list_active", bg = "list_hover" }
+"ui.picker" = { fg = "#CCCCCC", bg = "popup_bg" }
+
+"ui.virtual.whitespace" = { fg = "guide" }
+"ui.virtual.indent-guide" = { fg = "guide" }
+"ui.virtual.inlay-hint" = { fg = "bright_black" }
+"ui.virtual.ruler" = { bg = "border_dark" }
+"ui.virtual.jump-label" = { fg = "highlight_orange", modifiers = ["bold"] }
+
+"ui.bufferline" = { fg = "tab_inactive", bg = "header_bg" }
+"ui.bufferline.active" = { fg = "#ffffff", bg = "status_bg", modifiers = ["bold"] }
+"ui.highlight" = { fg = "highlight_orange" }
+
+"warning" = { fg = "diag_warn" }
+"error" = { fg = "diag_error" }
+"info" = { fg = "diag_info" }
+"hint" = { fg = "diag_debug" }
+
+"diagnostic.warning" = { underline = { color = "diag_warn", style = "curl" } }
+"diagnostic.error" = { underline = { color = "diag_error", style = "curl" } }
+"diagnostic.info" = { underline = { color = "diag_info", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "diag_debug", style = "curl" } }
+
+[palette]
+# Editor background & foreground
+bg = "#1e1e1e"
+fg = "#c5c8c6"
+line_highlight = "#303030"
+selection = "#676b71"
+selection_subtle = "#575b61"
+cursor_orange = "#c07020"
+
+# UI components
+sidebar_bg = "#272727"
+tab_bg = "#404040"
+tab_inactive = "#d8d8d8"
+header_bg = "#282828"
+status_bg = "#505050"
+popup_bg = "#272727"
+border_blue = "#3655b5"
+border_dark = "#303030"
+highlight_orange = "#e58520"
+guide = "#505037"
+guide_active = "#707057"
+list_hover = "#444444"
+list_active = "#707070"
+
+# Diagnostics
+diag_info = "#6796e6"
+diag_warn = "#cd9731"
+diag_error = "#f44747"
+diag_debug = "#b267e6"
+
+# ANSI Terminal Colors
+ansi_black = "#1e1e1e"
+ansi_red = "#C4265E"
+ansi_green = "#86B42B"
+ansi_yellow = "#B3B42B"
+ansi_blue = "#6A7EC8"
+ansi_magenta = "#8C6BC8"
+ansi_cyan = "#56ADBC"
+ansi_white = "#e3e3dd"
+bright_black = "#666666"
+bright_red = "#f92672"
+bright_green = "#A6E22E"
+bright_yellow = "#e2e22e"
+bright_blue = "#819aff"
+bright_magenta = "#AE81FF"
+bright_cyan = "#66D9EF"
+bright_white = "#f8f8f2"
+
+# Token Colors
+token_comment = "#9A9B99"
+token_string = "#9AA83A"
+token_string_embedded = "#D08442"
+token_number = "#6089B4"
+token_constant_builtin = "#408080"
+token_constant_user = "#8080FF"
+token_support = "#C7444A"
+token_storage = "#9872A2"
+token_class_name = "#9B0000"
+token_function_name = "#CE6700"
+token_function_special = "#D9B700"
+token_keyword = "#676867"
+token_keyword_control = "#9872A2"
+token_variable = "#6089B4"
+token_variable_lang = "#c7444a"
+token_tag_attribute = "#D0B344"
+token_invalid = "#FF0B00"
+token_diff_header = "#E0EDDD"
+token_diff_deleted = "#dc322f"
+token_diff_changed = "#cb4b16"
+token_diff_inserted = "#219186"
+token_markup_raw = "#FF0080"
+token_link = "#AE81FF"

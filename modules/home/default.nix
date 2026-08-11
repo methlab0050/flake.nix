@@ -19,6 +19,5 @@
     imhex
     inkscape
     godot
-    nil
   ];
 }

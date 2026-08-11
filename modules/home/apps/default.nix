@@ -5,5 +5,6 @@
     ./vscodium
     ./zen
     ./git
+    ./helix
   ];
 }
