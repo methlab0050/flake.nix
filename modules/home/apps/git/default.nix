@@ -38,6 +38,14 @@
           selectedRangeBgColor = ["#313244"];
         };
       };
+      git = {
+        pagers = [
+          {
+            colorArg = "always";
+            pager = "delta --dark --paging=never";
+          }
+        ];
+      };
     };
   };
 }
