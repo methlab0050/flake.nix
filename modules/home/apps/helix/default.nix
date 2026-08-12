@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./languages.nix
   ];
@@ -33,10 +31,5 @@
     themes = {
       monokai_dimmed = ./monokai_dimmed.toml;
     };
-
-    extraPackages = with pkgs; [
-      nil
-      marksman
-    ];
   };
 }
