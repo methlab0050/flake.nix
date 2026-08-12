@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   # Formatter configuration
   treefmt = {
     enable = true;
@@ -9,4 +9,8 @@
   git-hooks.hooks = {
     alejandra.enable = true;
   };
+
+  packages = [
+    pkgs.deadnix
+  ];
 }
