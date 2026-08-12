@@ -82,9 +82,6 @@
       inherit pkgs-unstable;
     };
   in {
-    formatter.${system} = pkgs.alejandra;
-
-    # Replace "nixos" here with your machine's actual hostname.
     # You can find your hostname in configuration.nix under `networking.hostName`
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
