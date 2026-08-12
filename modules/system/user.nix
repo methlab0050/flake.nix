@@ -8,5 +8,6 @@
       "libvirtd"
       "kvm"
     ];
+    initialPassword = "abcd";
   };
 }
