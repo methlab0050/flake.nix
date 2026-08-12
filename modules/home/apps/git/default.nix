@@ -14,7 +14,6 @@
     ignores = [
       ".direnv"
       "*.swp"
-      ".env"
       ".devenv"
     ];
   };
