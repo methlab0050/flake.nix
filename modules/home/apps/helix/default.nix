@@ -26,6 +26,21 @@
           hidden = false;
         };
       };
+
+      keys = {
+        normal = {
+          "C-left" = "move_prev_word_start";
+          "C-right" = "move_next_word_start";
+        };
+        insert = {
+          "C-left" = "move_prev_word_start";
+          "C-right" = "move_next_word_start";
+        };
+        select = {
+          "C-left" = "move_prev_word_start";
+          "C-right" = "move_next_word_start";
+        };
+      };
     };
 
     themes = {
