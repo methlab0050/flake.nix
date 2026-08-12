@@ -28,4 +28,16 @@
     };
     enableGitIntegration = true;
   };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui = {
+        theme = {
+          selectedLineBgColor = ["#313244"];
+          selectedRangeBgColor = ["#313244"];
+        };
+      };
+    };
+  };
 }
