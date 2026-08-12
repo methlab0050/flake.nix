@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   # Formatter configuration
   treefmt = {
     enable = true;
@@ -6,7 +6,7 @@
   };
 
   # Git pre-commit hooks
-  pre-commit.hooks = {
+  git-hooks.hooks = {
     alejandra.enable = true;
   };
 }
