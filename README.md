@@ -1,6 +1,7 @@
 # My GOATED NixOS config
 Bahhh 🐐🐐🐐
 
+If you're new to writing nix configs, check out [docs/START_HERE](./docs/START_HERE.md).
 
 ## Project Structure
 ```
