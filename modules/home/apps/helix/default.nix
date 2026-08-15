@@ -28,6 +28,10 @@
           enable = true;
           wrap-indicator = "";
         };
+
+        smart-tab = {
+          enable = false;
+        };
       };
 
       keys = {
