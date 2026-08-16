@@ -5,5 +5,6 @@
     ./fish
     ./ghostty
     ./nix-shell
+    ./vim
   ];
 }
