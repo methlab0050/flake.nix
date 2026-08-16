@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./btop
     ./fastfetch
     ./fish
     ./ghostty
