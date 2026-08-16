@@ -1,6 +1,5 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.mkIf config.programs.fish.enable {}
+{pkgs, ...}: {
+  home.packages = [pkgs.fish];
+
+  home.file.".config/fish".source = ./config;
+}
