@@ -20,7 +20,6 @@ Bahhh 🐐🐐🐐
 ## TODO
 - Add configs
     - zen
-    - vim
     - vscodium
 - Fix wack lockscreen
     - Remove sf pro font
