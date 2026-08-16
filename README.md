@@ -22,7 +22,6 @@ Bahhh 🐐🐐🐐
     - zen
     - vim
     - vscodium
-    - fish
 
 I hope GNOME 51 will have full support for 150% display scale.
 
