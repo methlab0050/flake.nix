@@ -13,12 +13,17 @@
 
     src = inputs.sonoma-lockscreen;
 
+    nativeBuildInputs = [
+      pkgs.glib
+    ];
+
     dontBuild = true;
 
     installPhase = ''
       runHook preInstall
       mkdir -p $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}
       cp -r * $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}/
+      glib-compile-schemas $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}/schemas
       runHook postInstall
     '';
   };

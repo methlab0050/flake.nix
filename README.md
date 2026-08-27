@@ -22,6 +22,9 @@ Bahhh 🐐🐐🐐
     - zen
     - vim
     - vscodium
+- Fix wack lockscreen
+    - Remove sf pro font
+    - Add inter font
 
 I hope GNOME 51 will have full support for 150% display scale.
 
