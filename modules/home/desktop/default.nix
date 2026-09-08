@@ -217,8 +217,8 @@ in {
       switch-applications = [];
       switch-applications-backward = [];
       switch-to-workspace-down = ["disabled"];
-      switch-to-workspace-left = ["<Alt><Super>Left"];
-      switch-to-workspace-right = ["<Alt><Super>Right"];
+      switch-to-workspace-left = ["<Control><Alt>Left" "<Alt><Super>Left"];
+      switch-to-workspace-right = ["<Control><Alt>Right" "<Alt><Super>Right"];
       switch-to-workspace-up = ["disabled"];
       switch-windows = ["<Super>Tab"];
       switch-windows-backward = ["<Shift><Super>Tab"];
