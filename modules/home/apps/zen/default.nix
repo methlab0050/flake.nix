@@ -25,16 +25,13 @@
     "font.default.x-western" = "sans-serif";
 
     # 5. Disable Ctrl + mouse scroll zooming
-    "mousewheel.with_control.action" = 0; # 0 = Scroll page instead of zoom
-
-    # Enable custom userChrome stylesheets
-    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    "mousewheel.with_control.action" = 1;
+    # "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   };
 
   # Declarative Zen Mods from Zen Theme Store across all profiles
   commonMods = [
     "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
-    "906c6915-5677-48ff-9bfc-096a02a72379" # Floating Status Bar
     "79dde383-4fe7-404a-a8e6-9be440022542" # Tidy Popup
   ];
 
@@ -112,13 +109,47 @@
       "zen.theme.accent-color" = accentColor;
     };
 
-  # Helper to set profile-specific accent color in userChrome CSS
-  mkUserChrome = accentColor: ''
-    :root {
-      --zen-primary-color: ${accentColor} !important;
-      --zen-colors-primary: ${accentColor} !important;
-    }
-  '';
+  # Helper to define Zen Space gradient themes and essential pinned tabs
+  mkSpaceTheme = spaceId: icon: r: g: b: {
+    "General" = {
+      id = spaceId;
+      position = 1000;
+      icon = icon;
+      theme = {
+        type = "gradient";
+        colors = [
+          {
+            red = r;
+            green = g;
+            blue = b;
+            algorithm = "floating";
+            type = "explicit-lightness";
+            lightness = 50;
+          }
+        ];
+        opacity = 0.8;
+        texture = 0.5;
+      };
+    };
+  };
+
+  # Helper to define essential pinned tabs for a space
+  mkPins = spaceId: calPinId: mailPinId: {
+    "Google Calendar" = {
+      id = calPinId;
+      url = "https://calendar.google.com";
+      position = 100;
+      workspace = spaceId;
+      isEssential = true;
+    };
+    "Gmail" = {
+      id = mailPinId;
+      url = "https://mail.google.com";
+      position = 200;
+      workspace = spaceId;
+      isEssential = true;
+    };
+  };
 in {
   imports = [
     inputs.zen-browser.homeModules.twilight
@@ -190,7 +221,8 @@ in {
         isDefault = true;
         path = "sbal7yhb.Default Profile";
         settings = mkSettings "#c8d3e6" commonSettings;
-        userChrome = mkUserChrome "#c8d3e6";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000001" "🏠" 200 211 230;
+        pins = mkPins "00000000-0000-4000-8000-000000000001" "00000000-0000-4000-8000-000000000101" "00000000-0000-4000-8000-000000000201";
         search = searchConfig;
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
@@ -200,7 +232,8 @@ in {
         id = 1;
         path = "awqvdtx6.Villain Arc";
         settings = mkSettings "#45475a" commonSettings;
-        userChrome = mkUserChrome "#45475a";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000002" "🥷" 69 71 90;
+        pins = mkPins "00000000-0000-4000-8000-000000000002" "00000000-0000-4000-8000-000000000102" "00000000-0000-4000-8000-000000000202";
         search = searchConfig;
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
@@ -210,7 +243,8 @@ in {
         id = 2;
         path = "jlcduw4a.School";
         settings = mkSettings "#dce5f5" commonSettings;
-        userChrome = mkUserChrome "#dce5f5";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000003" "🎓" 220 229 245;
+        pins = mkPins "00000000-0000-4000-8000-000000000003" "00000000-0000-4000-8000-000000000103" "00000000-0000-4000-8000-000000000203";
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
       };
@@ -219,7 +253,8 @@ in {
         id = 3;
         path = "kv8ujjg6.Healtouch";
         settings = mkSettings "#a6e3a1" commonSettings;
-        userChrome = mkUserChrome "#a6e3a1";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000004" "🌿" 166 227 161;
+        pins = mkPins "00000000-0000-4000-8000-000000000004" "00000000-0000-4000-8000-000000000104" "00000000-0000-4000-8000-000000000204";
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
       };
@@ -228,7 +263,8 @@ in {
         id = 4;
         path = "azi4n6er.CAMRU";
         settings = mkSettings "#89b4fa" commonSettings; # Classic Zen Blue
-        userChrome = mkUserChrome "#89b4fa";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000005" "🌊" 137 180 250;
+        pins = mkPins "00000000-0000-4000-8000-000000000005" "00000000-0000-4000-8000-000000000105" "00000000-0000-4000-8000-000000000205";
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
       };
@@ -236,7 +272,8 @@ in {
       GDDC = {
         id = 5;
         settings = mkSettings "#94e2d5" commonSettings; # Teal Blue
-        userChrome = mkUserChrome "#94e2d5";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000006" "💎" 148 226 213;
+        pins = mkPins "00000000-0000-4000-8000-000000000006" "00000000-0000-4000-8000-000000000106" "00000000-0000-4000-8000-000000000206";
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
       };
@@ -244,7 +281,8 @@ in {
       GAME = {
         id = 6;
         settings = mkSettings "#cba6f7" commonSettings; # Purple / Mauve
-        userChrome = mkUserChrome "#cba6f7";
+        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000007" "🎮" 203 166 247;
+        pins = mkPins "00000000-0000-4000-8000-000000000007" "00000000-0000-4000-8000-000000000107" "00000000-0000-4000-8000-000000000207";
         mods = commonMods;
         keyboardShortcuts = commonKeyboardShortcuts;
       };
