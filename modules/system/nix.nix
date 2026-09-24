@@ -10,4 +10,9 @@
 
   # Enable nh helper
   programs.nh.enable = true;
+
+  programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   # Add any missing dynamic libraries here
+  # ];
 }
