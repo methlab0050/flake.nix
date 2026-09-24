@@ -86,7 +86,7 @@ in {
         "com.mitchellh.ghostty.desktop"
         "org.gnome.Nautilus.desktop"
         "codium.desktop"
-        "zen-beta.desktop"
+        "zen-twilight.desktop"
       ];
     };
 
