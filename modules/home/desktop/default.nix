@@ -4,29 +4,7 @@
   lib,
   ...
 }: let
-  sonomaMeta = builtins.fromJSON (builtins.readFile "${inputs.sonoma-lockscreen}/metadata.json");
-
-  sonoma-lockscreen = pkgs.stdenvNoCC.mkDerivation {
-    pname = "wack-sonoma-lockscreen";
-    version = "unstable";
-    extensionUuid = sonomaMeta.uuid;
-
-    src = inputs.sonoma-lockscreen;
-
-    nativeBuildInputs = [
-      pkgs.glib
-    ];
-
-    dontBuild = true;
-
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}
-      cp -r * $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}/
-      glib-compile-schemas $out/share/gnome-shell/extensions/${sonoma-lockscreen.extensionUuid}/schemas
-      runHook postInstall
-    '';
-  };
+  sonoma-lockscreen = ./lockscreen.nix;
 
   extensions = with pkgs.gnomeExtensions; [
     advanced-alttab-window-switcher
