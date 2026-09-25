@@ -20,10 +20,6 @@ Bahhh 🐐🐐🐐
 ## TODO
 - Add configs
     - vscodium
-- Fix wack lockscreen
-    - Remove sf pro font
-    - Add inter font
-    - Maybe fork original project?
 - Change gnome emoji picker from ctrl+; to ctrl+.
     - Remove default emoji picker at ctrl+.
 - set ghostty as default term in nautilus

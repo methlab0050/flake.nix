@@ -53,8 +53,8 @@
     };
 
     sonoma-lockscreen = {
-      url = "github:rinzler69-wastaken/wack-sonoma-lockscreen";
-      flake = false;
+      url = "github:methlab0050/wack-sonoma-lockscreen";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     bigsur-sound-theme = {

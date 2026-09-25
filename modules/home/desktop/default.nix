@@ -2,15 +2,14 @@
   inputs,
   pkgs,
   lib,
+  system,
   ...
 }: let
-  sonoma-lockscreen = import ./lockscreen.nix {inherit inputs pkgs;};
-
   extensions = with pkgs.gnomeExtensions; [
     advanced-alttab-window-switcher
     dash-to-dock
     custom-hot-corners-extended
-    sonoma-lockscreen
+    inputs.sonoma-lockscreen.packages.${system}.default
   ];
 in {
   home.packages = with pkgs;
