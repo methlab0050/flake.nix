@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  sonoma-lockscreen = ./lockscreen.nix;
+  sonoma-lockscreen = import ./lockscreen.nix {inherit inputs pkgs;};
 
   extensions = with pkgs.gnomeExtensions; [
     advanced-alttab-window-switcher
