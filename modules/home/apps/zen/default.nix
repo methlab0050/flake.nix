@@ -175,9 +175,9 @@ in {
 
     policies = {
       ExtensionSettings = mkExtensionSettings {
-        "proton-pass@proton.me" = "proton-pass";
-        "hotkeys-for-tabs-left-right@jscher2000" = "hotkeys-for-tabs-left-right";
+        "left-tab-right-tab@jeffersonscher.com" = "hotkeys-for-tabs-left-right";
         "uBlock0@raymondhill.net" = "ublock-origin";
+        "ctrl-shift-c-copy@jeffersonscher.com" = "ctrl-shift-c-should-copy";
       };
     };
 
