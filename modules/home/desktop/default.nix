@@ -216,5 +216,14 @@ in {
       switch-to-application-4 = [];
       switch-to-application-5 = [];
     };
+
+    # Remove this awful emoji picker from my system
+    "desktop/ibus/panel/emoji" = {
+      hotkey = [];
+    };
+
+    "org/freedesktop/ibus/panel/emoji" = {
+      hotkey = [];
+    };
   };
 }

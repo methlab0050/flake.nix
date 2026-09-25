@@ -29,6 +29,7 @@ Bahhh 🐐🐐🐐
 - zen:
     - Extensions and extension shortcuts
     - Pins
+- Add smile emoji picker
 
 I hope GNOME 51 will have full support for 150% display scale.
 
