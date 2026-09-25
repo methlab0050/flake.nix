@@ -23,13 +23,20 @@ Bahhh 🐐🐐🐐
 - Fix wack lockscreen
     - Remove sf pro font
     - Add inter font
+    - Maybe fork original project?
 - Change gnome emoji picker from ctrl+; to ctrl+.
     - Remove default emoji picker at ctrl+.
-- set ghostty as default term
+- set ghostty as default term in nautilus
+    - [See this thread](https://discourse.nixos.org/t/howto-disable-most-gnome-default-applications-and-what-they-are/13505)
 - zen:
     - Extensions and extension shortcuts
+        - Use Rycee to get extensions to work
+        - Might have to manually overwrite extension-settings.json for shortcuts
     - Pins
+    - Shortcuts
+        - Might have to remove zen-shortcuts.json before hand
 - Add smile emoji picker
+- Rewrite fish to properly use home manager (maybe)
 
 I hope GNOME 51 will have full support for 150% display scale.
 
