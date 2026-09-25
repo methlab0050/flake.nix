@@ -27,6 +27,9 @@
     # 5. Disable Ctrl + mouse scroll zooming
     "mousewheel.with_control.action" = 1;
     # "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+    # Google Docs paste acts weird if you don't set this
+    "dom.events.testing.asyncClipboard" = true;
   };
 
   # Declarative Zen Mods from Zen Theme Store across all profiles

@@ -19,7 +19,6 @@ Bahhh 🐐🐐🐐
 
 ## TODO
 - Add configs
-    - zen
     - vscodium
 - Fix wack lockscreen
     - Remove sf pro font
@@ -27,8 +26,10 @@ Bahhh 🐐🐐🐐
 - Change jconsole fish with jconsole nix
 - Change gnome emoji picker from ctrl+; to ctrl+.
     - Remove default emoji picker at ctrl+.
-- dom.events.testing.asyncClipboard = true
 - set ghostty as default term
+- zen:
+    - Extensions and extension shortcuts
+    - Pins
 
 I hope GNOME 51 will have full support for 150% display scale.
 
