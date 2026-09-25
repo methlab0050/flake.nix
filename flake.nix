@@ -61,11 +61,14 @@
       url = "github:gxanshu/macos-bigsur-sound-theme-linux";
       flake = false;
     };
+
+    devenv = {
+      url = "github:cachix/devenv";
+    };
   };
 
   outputs = {
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     ...
   } @ inputs: let
@@ -73,12 +76,10 @@
     # Change this eventually
     hostName = "nixos";
     pkgs = nixpkgs.legacyPackages.${system};
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     specialArgs = {
       inherit inputs;
       inherit hostName;
       inherit system;
-      inherit pkgs-unstable;
     };
   in {
     # You can find your hostname in configuration.nix under `networking.hostName`
