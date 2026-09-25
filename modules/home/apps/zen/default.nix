@@ -5,7 +5,7 @@
   ...
 }: let
   # Shared preferences across all Zen profiles (prefs.js)
-  commonSettings = {
+  settings = {
     # 1. Ctrl+Tab cycles through recently most used tabs
     "browser.ctrlTab.sortByRecentlyUsed" = true;
 
@@ -30,13 +30,13 @@
   };
 
   # Declarative Zen Mods from Zen Theme Store across all profiles
-  commonMods = [
+  mods = [
     "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
     "79dde383-4fe7-404a-a8e6-9be440022542" # Tidy Popup
   ];
 
   # Declarative Keyboard Shortcuts (schema mapped directly to zen-keyboard-shortcuts.json)
-  commonKeyboardShortcuts = [
+  keyboardShortcuts = [
     {
       id = "key_privatebrowsing";
       key = "N";
@@ -102,52 +102,24 @@
     };
   };
 
-  # Helper to set profile-specific accent color settings
-  mkSettings = accentColor: baseSettings:
-    baseSettings
-    // {
-      "zen.theme.accent-color" = accentColor;
-    };
-
-  # Helper to define Zen Space gradient themes and essential pinned tabs
-  mkSpaceTheme = spaceId: icon: r: g: b: {
-    "General" = {
-      id = spaceId;
-      position = 1000;
-      icon = icon;
-      theme = {
-        type = "gradient";
-        colors = [
-          {
-            red = r;
-            green = g;
-            blue = b;
-            algorithm = "floating";
-            type = "explicit-lightness";
-            lightness = 50;
-          }
-        ];
-        opacity = 0.8;
-        texture = 0.5;
-      };
-    };
-  };
+  mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
+    install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+    installation_mode = "force_installed";
+  });
 
   # Helper to define essential pinned tabs for a space
-  mkPins = spaceId: calPinId: mailPinId: {
+  mkPins = id: calPinId: mailPinId: {
     "Google Calendar" = {
       id = calPinId;
       url = "https://calendar.google.com";
-      position = 100;
-      workspace = spaceId;
-      isEssential = true;
+      position = 100 + id + 1;
+      # isEssential = true;
     };
     "Gmail" = {
       id = mailPinId;
       url = "https://mail.google.com";
-      position = 200;
-      workspace = spaceId;
-      isEssential = true;
+      position = 200 + id + 1;
+      # isEssential = true;
     };
   };
 in {
@@ -199,92 +171,61 @@ in {
     };
 
     policies = {
-      ExtensionSettings = {
-        "proton-pass@proton.me" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
-          installation_mode = "normal_installed";
-        };
-        "hotkeys-for-tabs-left-right@jscher2000" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/hotkeys-for-tabs-left-right/latest.xpi";
-          installation_mode = "normal_installed";
-        };
-        "uBlock0@raymondhill.net" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "normal_installed";
-        };
+      ExtensionSettings = mkExtensionSettings {
+        "proton-pass@proton.me" = "proton-pass";
+        "hotkeys-for-tabs-left-right@jscher2000" = "hotkeys-for-tabs-left-right";
+        "uBlock0@raymondhill.net" = "ublock-origin";
       };
     };
 
     profiles = {
       Default = {
+        inherit settings mods keyboardShortcuts;
         id = 0;
-        isDefault = true;
         path = "sbal7yhb.Default Profile";
-        settings = mkSettings "#c8d3e6" commonSettings;
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000001" "🏠" 200 211 230;
-        pins = mkPins "00000000-0000-4000-8000-000000000001" "00000000-0000-4000-8000-000000000101" "00000000-0000-4000-8000-000000000201";
+        pins = mkPins 0 "00000000-0000-4000-8000-000000000101" "00000000-0000-4000-8000-000000000201";
         search = searchConfig;
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
       };
 
       "Villain Arc" = {
+        inherit settings mods keyboardShortcuts;
         id = 1;
         path = "awqvdtx6.Villain Arc";
-        settings = mkSettings "#45475a" commonSettings;
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000002" "🥷" 69 71 90;
-        pins = mkPins "00000000-0000-4000-8000-000000000002" "00000000-0000-4000-8000-000000000102" "00000000-0000-4000-8000-000000000202";
+        pins = mkPins 1 "00000000-0000-4000-8000-000000000102" "00000000-0000-4000-8000-000000000202";
         search = searchConfig;
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
       };
 
       School = {
+        inherit settings mods keyboardShortcuts;
         id = 2;
         path = "jlcduw4a.School";
-        settings = mkSettings "#dce5f5" commonSettings;
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000003" "🎓" 220 229 245;
-        pins = mkPins "00000000-0000-4000-8000-000000000003" "00000000-0000-4000-8000-000000000103" "00000000-0000-4000-8000-000000000203";
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
+        pins = mkPins 2 "00000000-0000-4000-8000-000000000103" "00000000-0000-4000-8000-000000000203";
       };
 
       Healtouch = {
+        inherit settings mods keyboardShortcuts;
         id = 3;
         path = "kv8ujjg6.Healtouch";
-        settings = mkSettings "#a6e3a1" commonSettings;
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000004" "🌿" 166 227 161;
-        pins = mkPins "00000000-0000-4000-8000-000000000004" "00000000-0000-4000-8000-000000000104" "00000000-0000-4000-8000-000000000204";
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
+        pins = mkPins 3 "00000000-0000-4000-8000-000000000104" "00000000-0000-4000-8000-000000000204";
       };
 
       CAMRU = {
+        inherit settings mods keyboardShortcuts;
         id = 4;
         path = "azi4n6er.CAMRU";
-        settings = mkSettings "#89b4fa" commonSettings; # Classic Zen Blue
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000005" "🌊" 137 180 250;
-        pins = mkPins "00000000-0000-4000-8000-000000000005" "00000000-0000-4000-8000-000000000105" "00000000-0000-4000-8000-000000000205";
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
+        pins = mkPins 4 "00000000-0000-4000-8000-000000000105" "00000000-0000-4000-8000-000000000205";
       };
 
       GDDC = {
+        inherit settings mods keyboardShortcuts;
         id = 5;
-        settings = mkSettings "#94e2d5" commonSettings; # Teal Blue
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000006" "💎" 148 226 213;
-        pins = mkPins "00000000-0000-4000-8000-000000000006" "00000000-0000-4000-8000-000000000106" "00000000-0000-4000-8000-000000000206";
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
+        pins = mkPins 5 "00000000-0000-4000-8000-000000000106" "00000000-0000-4000-8000-000000000206";
       };
 
       GAME = {
+        inherit settings mods keyboardShortcuts;
         id = 6;
-        settings = mkSettings "#cba6f7" commonSettings; # Purple / Mauve
-        spaces = mkSpaceTheme "00000000-0000-4000-8000-000000000007" "🎮" 203 166 247;
-        pins = mkPins "00000000-0000-4000-8000-000000000007" "00000000-0000-4000-8000-000000000107" "00000000-0000-4000-8000-000000000207";
-        mods = commonMods;
-        keyboardShortcuts = commonKeyboardShortcuts;
+        pins = mkPins 6 "00000000-0000-4000-8000-000000000107" "00000000-0000-4000-8000-000000000207";
       };
     };
   };
