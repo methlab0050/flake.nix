@@ -36,6 +36,7 @@
   mods = [
     "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
     "79dde383-4fe7-404a-a8e6-9be440022542" # Tidy Popup
+    "253a3a74-0cc4-47b7-8b82-996a64f030d5" # Floating History
   ];
 
   # Declarative Keyboard Shortcuts (schema mapped directly to zen-keyboard-shortcuts.json)
@@ -116,13 +117,13 @@
       id = calPinId;
       url = "https://calendar.google.com";
       position = 100 + id + 1;
-      # isEssential = true;
+      isEssential = true;
     };
     "Gmail" = {
       id = mailPinId;
       url = "https://mail.google.com";
       position = 200 + id + 1;
-      # isEssential = true;
+      isEssential = true;
     };
   };
 in {
@@ -194,7 +195,6 @@ in {
         inherit settings mods keyboardShortcuts;
         id = 1;
         path = "awqvdtx6.Villain Arc";
-        pins = mkPins 1 "00000000-0000-4000-8000-000000000102" "00000000-0000-4000-8000-000000000202";
         search = searchConfig;
       };
 
