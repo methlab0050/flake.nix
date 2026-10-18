@@ -14,11 +14,13 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    mission-center
     discord
     imhex
     inkscape
     godot
     j
+    zathura
+    tree
+    deno
   ];
 }
