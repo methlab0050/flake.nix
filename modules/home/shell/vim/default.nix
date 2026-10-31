@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    vim
+    vim-full
   ];
 
   home.activation.copyVimrc = lib.hm.dag.entryAfter ["writeBoundary"] ''
