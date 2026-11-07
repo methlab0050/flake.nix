@@ -6,5 +6,6 @@
     ./ghostty
     ./nix-shell
     ./vim
+    ./zoxide
   ];
 }
