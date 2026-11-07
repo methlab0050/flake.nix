@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sonoma-lockscreen = {
       url = "github:methlab0050/wack-sonoma-lockscreen";
       inputs.nixpkgs.follows = "nixpkgs";

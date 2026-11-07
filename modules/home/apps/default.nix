@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./agy
+    ./allen-iverson
     ./office
     ./vscodium
     ./zen
