@@ -6,6 +6,8 @@
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    nixpkgs-rolling.url = "github:cachix/devenv-nixpkgs/rolling";
+
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,6 +82,7 @@
       inherit inputs;
       inherit hostName;
       inherit system;
+      pkgs_rolling = inputs.nixpkgs-rolling.legacyPackages.${system};
     };
   in {
     # You can find your hostname in configuration.nix under `networking.hostName`

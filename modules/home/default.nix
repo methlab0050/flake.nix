@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs_rolling,
+  ...
+}: {
   imports = [
     ./apps
     ./desktop
@@ -17,10 +21,11 @@
     discord
     imhex
     inkscape
-    godot
-    j
+    pkgs_rolling.godot
+    # j
     zathura
     tree
     deno
+    torcs
   ];
 }
