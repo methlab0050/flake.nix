@@ -10,4 +10,16 @@
     ];
     initialPassword = "abcd";
   };
+
+  users.users."test" = {
+    isNormalUser = true;
+    description = "Test User";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "kvm"
+    ];
+    initialPassword = "abcd";
+  };
 }
