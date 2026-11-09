@@ -10,5 +10,12 @@ inputs:
     inputs:
       nixpkgs:
         follows: nixpkgs
+  nix-inspect:
+    url: github:bluskript/nix-inspect
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
+  treefmt-nix:
+    url: github:numtide/treefmt-nix
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
