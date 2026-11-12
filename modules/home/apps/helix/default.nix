@@ -20,10 +20,6 @@
           select = "underline";
         };
 
-        file-picker = {
-          hidden = false;
-        };
-
         soft-wrap = {
           enable = true;
           wrap-indicator = "";
