@@ -27,5 +27,6 @@
     tree
     deno
     torcs
+    pkgs_rolling.marktext
   ];
 }
