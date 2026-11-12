@@ -179,6 +179,7 @@ in {
         "left-tab-right-tab@jeffersonscher.com" = "hotkeys-for-tabs-left-right";
         "uBlock0@raymondhill.net" = "ublock-origin";
         "ctrl-shift-c-copy@jeffersonscher.com" = "ctrl-shift-c-should-copy";
+        "sound-boobooster@yeahyeah" = "600-sound-booster-max-volume";
       };
     };
 
