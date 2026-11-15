@@ -15,4 +15,11 @@
   # programs.nix-ld.libraries = with pkgs; [
   #   # Add any missing dynamic libraries here
   # ];
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
+  services.flatpak.enable = true;
 }
