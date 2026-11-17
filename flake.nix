@@ -67,6 +67,11 @@
     devenv = {
       url = "github:cachix/devenv";
     };
+
+    xross = {
+      url = "github:methlab0050/xross";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
