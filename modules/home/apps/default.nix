@@ -6,5 +6,6 @@
     ./zen
     ./git
     ./helix
+    ./alacritty
   ];
 }
