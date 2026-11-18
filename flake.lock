@@ -747,11 +747,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794904259,
-        "narHash": "sha256-jPruwLsgDyprTIbvelmqQvGWXyj8BhLmMh/WaswdPpc=",
+        "lastModified": 1794974003,
+        "narHash": "sha256-nfqqsJnhLrJCarZ7Tq7u8I22nBX1vT1i/3lgvnSvs+0=",
         "owner": "methlab0050",
         "repo": "xross",
-        "rev": "3dc7d88d6054195bb340248a1547182e5d9c6c80",
+        "rev": "2d494cbecd8b0a242fe678c990979870677aed3e",
         "type": "github"
       },
       "original": {
