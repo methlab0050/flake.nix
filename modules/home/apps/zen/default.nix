@@ -106,24 +106,95 @@
     };
   };
 
-  mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
-    install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
-    installation_mode = "force_installed";
-  });
+  mkExtensionSettings = builtins.mapAttrs (
+    _: pluginId: {
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+      installation_mode = "force_installed";
+    }
+  );
 
   # Helper to define essential pinned tabs for a space
-  mkPins = id: calPinId: mailPinId: {
+  mkPins = id: {
     "Google Calendar" = {
-      id = calPinId;
+      id = "00000000-0000-4000-8000-00000000010" + toString id;
       url = "https://calendar.google.com";
-      position = 100 + id + 1;
+      position = 100 + id;
       isEssential = true;
     };
     "Gmail" = {
-      id = mailPinId;
+      id = "00000000-0000-4000-8000-00000000020" + toString id;
       url = "https://mail.google.com";
-      position = 200 + id + 1;
+      position = 200 + id;
       isEssential = true;
+    };
+  };
+
+  profiles = [
+    {
+      path = "sbal7yhb.Default Profile";
+      name = "Default";
+      search = searchConfig;
+    }
+    {
+      path = "awqvdtx6.Villain Arc";
+      search = searchConfig;
+      pins = {};
+    }
+    {
+      path = "jlcduw4a.School";
+    }
+    {
+      path = "kv8ujjg6.Healtouch";
+    }
+    {
+      path = "azi4n6er.CAMRU";
+    }
+    {
+      path = "GDDC";
+    }
+    {
+      path = "GAME";
+    }
+  ];
+
+  mkProfile = id: profileSettings: let
+    path = profileSettings.path;
+    name =
+      if profileSettings ? name
+      then profileSettings.name
+      else lib.last (lib.splitString "." path);
+    pins = mkPins (id + 1);
+  in {
+    "${name}" =
+      {
+        inherit id pins settings mods keyboardShortcuts;
+      }
+      // removeAttrs profileSettings ["name"];
+  };
+
+  mkXdgDesktopEntry = profileSettings: let
+    path = profileSettings.path;
+    name =
+      if profileSettings ? name
+      then profileSettings.name
+      else lib.last (lib.splitString "." path);
+  in {
+    "zen-${name}" = {
+      name = "Zen Browser (${name})";
+      genericName = "Web Browser";
+      comment = "Launch Zen Twilight with ${name} profile";
+      exec = "zen-twilight -P \"${name}\" %U";
+      icon = "zen-twilight";
+      terminal = false;
+      type = "Application";
+      categories = ["Network" "WebBrowser"];
+      mimeType = [
+        "text/html"
+        "text/xml"
+        "application/xhtml+xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
     };
   };
 in {
@@ -137,34 +208,6 @@ in {
     nerd-fonts.tinos
     nerd-fonts.caskaydia-mono
   ];
-
-  # Remove non-symlink target collisions before checkLinkTargets so Home Manager links cleanly
-  home.activation.cleanZenProfileCollisions = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
-    PROFILES_INI="$HOME/.config/zen/profiles.ini"
-    if [ -f "$PROFILES_INI" ] && [ ! -L "$PROFILES_INI" ]; then
-      rm -f "$PROFILES_INI"
-    fi
-
-    for profile in "GDDC" "GAME" "Default" "Villain Arc" "School" "Healtouch" "CAMRU" \
-                   "sbal7yhb.Default Profile" "awqvdtx6.Villain Arc" "jlcduw4a.School" "kv8ujjg6.Healtouch" "azi4n6er.CAMRU"; do
-      for f in "$HOME/.config/zen/$profile/user.js" "$HOME/.config/zen/$profile/chrome/userChrome.css"; do
-        if [ -f "$f" ] && [ ! -L "$f" ]; then
-          rm -f "$f"
-        fi
-      done
-    done
-  '';
-
-  # Ensure profiles.ini is writable so browser start doesn't crash on state saves
-  home.activation.makeZenProfilesIniWritable = lib.hm.dag.entryAfter ["linkGeneration"] ''
-    PROFILES_INI="$HOME/.config/zen/profiles.ini"
-    if [ -L "$PROFILES_INI" ]; then
-      TARGET="$(readlink "$PROFILES_INI")"
-      rm -f "$PROFILES_INI"
-      cp -L "$TARGET" "$PROFILES_INI"
-      chmod 644 "$PROFILES_INI"
-    fi
-  '';
 
   programs.zen-browser = {
     enable = true;
@@ -183,54 +226,8 @@ in {
       };
     };
 
-    profiles = {
-      Default = {
-        inherit settings mods keyboardShortcuts;
-        id = 0;
-        path = "sbal7yhb.Default Profile";
-        pins = mkPins 0 "00000000-0000-4000-8000-000000000101" "00000000-0000-4000-8000-000000000201";
-        search = searchConfig;
-      };
-
-      "Villain Arc" = {
-        inherit settings mods keyboardShortcuts;
-        id = 1;
-        path = "awqvdtx6.Villain Arc";
-        search = searchConfig;
-      };
-
-      School = {
-        inherit settings mods keyboardShortcuts;
-        id = 2;
-        path = "jlcduw4a.School";
-        pins = mkPins 2 "00000000-0000-4000-8000-000000000103" "00000000-0000-4000-8000-000000000203";
-      };
-
-      Healtouch = {
-        inherit settings mods keyboardShortcuts;
-        id = 3;
-        path = "kv8ujjg6.Healtouch";
-        pins = mkPins 3 "00000000-0000-4000-8000-000000000104" "00000000-0000-4000-8000-000000000204";
-      };
-
-      CAMRU = {
-        inherit settings mods keyboardShortcuts;
-        id = 4;
-        path = "azi4n6er.CAMRU";
-        pins = mkPins 4 "00000000-0000-4000-8000-000000000105" "00000000-0000-4000-8000-000000000205";
-      };
-
-      GDDC = {
-        inherit settings mods keyboardShortcuts;
-        id = 5;
-        pins = mkPins 5 "00000000-0000-4000-8000-000000000106" "00000000-0000-4000-8000-000000000206";
-      };
-
-      GAME = {
-        inherit settings mods keyboardShortcuts;
-        id = 6;
-        pins = mkPins 6 "00000000-0000-4000-8000-000000000107" "00000000-0000-4000-8000-000000000207";
-      };
-    };
+    profiles = lib.mergeAttrsList (lib.imap0 mkProfile profiles);
   };
+
+  xdg.desktopEntries = lib.mergeAttrsList (map mkXdgDesktopEntry profiles);
 }
