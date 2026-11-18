@@ -5,14 +5,14 @@
 
 [general]
 # What Ctrl+` runs (through `sh -c`).
-terminal = "ghostty"
+terminal = "alacritty"
 # "dev" (Alt / Shift+Alt) or "prod" (Super / Ctrl+Super). Leave unset for dev when
 # nested and prod on a TTY. `--binds` on the command line wins.
 # binds = "prod"
 
 [startup]
 # Run once after Xwayland is up, through `sh -c`.
-commands = ["swaybg -i ./background.jpg -m fill"]
+commands = ["swaybg -i $HOME/.config/xross/background.jpg -m fill"]
 
 [output]
 scale = 1.4
@@ -26,7 +26,7 @@ native_scaling = true
 
 [layout]
 # Gap around and between snapped windows (logical px).
-gaps = 0
+gaps = 5
 # How quickly the second Mod+arrow must follow the first for a quadrant (ms).
 snap_combo_ms = 500
 
@@ -47,6 +47,7 @@ pan = { stiffness = 600.0, damping = 1.0 }        # panning inside the overview
 [overview]
 # Workspace size in the overview, relative to the screen.
 scale = 0.25
+launcher = "sherlock"
 
 [touchpad]
 tap = true
@@ -73,7 +74,7 @@ font_size = 14
 
 
 
-[binds]
+[binds.prod]
 # Extra keybinds: "Modifiers+Key" = "action". They override the built-in binds with
 # the same keys; "none" disables a built-in bind.
 #
@@ -84,12 +85,11 @@ font_size = 14
 #   snap left|right|up|down, workspace DIR, move-to-workspace DIR,
 #   switcher-next, switcher-prev.
 "Mod+q" = "close"
-"Mod+f" = "fullscreen"
 "Mod+d" = "spawn sherlock"
-"Ctrl+Alt+Up" = "move-to-workspace up"
-"Ctrl+Alt+Down" = "move-to-workspace down"
-"Ctrl+Alt+Right" = "move-to-workspace right"
-"Ctrl+Alt+Left" = "move-to-workspace left"
+"Ctrl+Alt+Up" = "workspace up"
+"Ctrl+Alt+Down" = "workspace down"
+"Ctrl+Alt+Right" = "workspace right"
+"Ctrl+Alt+Left" = "workspace left"
 "Ctrl+Mod+Up" = "none"
 "Ctrl+Mod+Down" = "none"
 "Ctrl+Mod+Right" = "none"
