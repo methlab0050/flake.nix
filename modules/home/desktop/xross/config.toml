@@ -5,7 +5,7 @@
 
 [general]
 # What Ctrl+` runs (through `sh -c`).
-terminal = "alacritty"
+terminal = "ghostty"
 # "dev" (Alt / Shift+Alt) or "prod" (Super / Ctrl+Super). Leave unset for dev when
 # nested and prod on a TTY. `--binds` on the command line wins.
 # binds = "prod"
