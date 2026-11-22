@@ -41,10 +41,10 @@ function fish_logo \
     end
     
     # shortcuts:
-    set o (set_color $outer_color)
-    set m (set_color $medium_color)
-    set i (set_color $inner_color)
     set n (set_color normal)
+    set o $n(set_color $outer_color)
+    set m $n(set_color $medium_color)
+    set i $n(set_color $inner_color)
     
     if test (count $o) != 1; or test (count $m) != 1; or test (count $i) != 1
     echo 'Invalid color argument'
