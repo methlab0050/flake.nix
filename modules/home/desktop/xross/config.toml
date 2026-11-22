@@ -5,7 +5,7 @@
 
 [general]
 # What Ctrl+` runs (through `sh -c`).
-terminal = "ghostty"
+terminal = "alacritty"
 # "dev" (Alt / Shift+Alt) or "prod" (Super / Ctrl+Super). Leave unset for dev when
 # nested and prod on a TTY. `--binds` on the command line wins.
 # binds = "prod"
@@ -46,7 +46,7 @@ pan = { stiffness = 600.0, damping = 1.0 }        # panning inside the overview
 
 [overview]
 # Workspace size in the overview, relative to the screen.
-scale = 0.25
+scale = 0.4
 launcher = "sherlock"
 
 [touchpad]
@@ -57,7 +57,7 @@ natural_scroll = true
 # Behind everything, and between workspaces while they slide.
 background = "#141419"
 # For apps that can either draw their own title bar or use xross's: use xross's.
-server_decorations = true
+server_decorations = false
 # Rounded corners (logical px, 0 for square) and soft shadows, for windows with
 # xross's title bar. Maximized and edge-to-edge snapped windows stay square.
 corner_radius = 10.0
@@ -86,10 +86,6 @@ font_size = 14
 #   switcher-next, switcher-prev.
 "Mod+q" = "close"
 "Mod+d" = "spawn sherlock"
-"Ctrl+Alt+Up" = "workspace up"
-"Ctrl+Alt+Down" = "workspace down"
-"Ctrl+Alt+Right" = "workspace right"
-"Ctrl+Alt+Left" = "workspace left"
 "Ctrl+Mod+Up" = "none"
 "Ctrl+Mod+Down" = "none"
 "Ctrl+Mod+Right" = "none"
