@@ -218,6 +218,17 @@ in {
     nerd-fonts.caskaydia-mono
   ];
 
+  # Ensure profiles.ini is writable so browser start doesn't crash on state saves
+  home.activation.makeZenProfilesIniWritable = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    PROFILES_INI="$HOME/.config/zen/profiles.ini"
+    if [ -L "$PROFILES_INI" ]; then
+      TARGET="$(readlink "$PROFILES_INI")"
+      rm -f "$PROFILES_INI"
+      cp -L "$TARGET" "$PROFILES_INI"
+      chmod 644 "$PROFILES_INI"
+    fi
+  '';
+
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
