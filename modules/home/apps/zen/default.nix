@@ -180,11 +180,11 @@
       else lib.last (lib.splitString "." path);
   in {
     "zen-${name}" = {
-      name = "Zen Browser (${name})";
+      name = "${name}";
       genericName = "Web Browser";
       comment = "Launch Zen Twilight with ${name} profile";
       exec = "zen-twilight -P \"${name}\" %U";
-      icon = "zen-twilight";
+      icon = "zen-beta";
       terminal = false;
       type = "Application";
       categories = ["Network" "WebBrowser"];
@@ -195,6 +195,15 @@
         "x-scheme-handler/http"
         "x-scheme-handler/https"
       ];
+    };
+  };
+
+  profileManager = {
+    "zen-picker" = {
+      name = "Zen Profile Manager";
+      comment = "Launch Zen Twilight profile manager";
+      exec = "zen-twilight --ProfileManager %U";
+      icon = "zen-twilight";
     };
   };
 in {
@@ -229,5 +238,5 @@ in {
     profiles = lib.mergeAttrsList (lib.imap0 mkProfile profiles);
   };
 
-  xdg.desktopEntries = lib.mergeAttrsList (map mkXdgDesktopEntry profiles);
+  xdg.desktopEntries = lib.mergeAttrsList (map mkXdgDesktopEntry profiles) // profileManager;
 }
