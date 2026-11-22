@@ -229,6 +229,13 @@ in {
     fi
   '';
 
+  home.activation.cleanZenProfileCollisions = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
+    PROFILES_INI="$HOME/.config/zen/profiles.ini"
+    if [ -f "$PROFILES_INI" ] && [ ! -L "$PROFILES_INI" ]; then
+      rm -f "$PROFILES_INI"
+    fi
+  '';
+
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
