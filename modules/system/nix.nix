@@ -10,4 +10,15 @@
 
   # Enable nh helper
   programs.nh.enable = true;
+
+  programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  # ];
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
+  services.flatpak.enable = true;
 }
