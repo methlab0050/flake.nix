@@ -68,11 +68,6 @@
       url = "github:cachix/devenv";
     };
 
-    xross = {
-      url = "github:methlab0050/xross";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

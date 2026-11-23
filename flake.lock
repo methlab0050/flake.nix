@@ -596,7 +596,6 @@
         "quickshell": "quickshell",
         "sonoma-lockscreen": "sonoma-lockscreen",
         "wsf": "wsf",
-        "xross": "xross",
         "zen-browser": "zen-browser"
       }
     },
@@ -758,26 +757,6 @@
       "original": {
         "owner": "daniel-g-carrasco",
         "repo": "wayland-scroll-factor",
-        "type": "github"
-      }
-    },
-    "xross": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1794974003,
-        "narHash": "sha256-nfqqsJnhLrJCarZ7Tq7u8I22nBX1vT1i/3lgvnSvs+0=",
-        "owner": "methlab0050",
-        "repo": "xross",
-        "rev": "2d494cbecd8b0a242fe678c990979870677aed3e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "methlab0050",
-        "repo": "xross",
         "type": "github"
       }
     },

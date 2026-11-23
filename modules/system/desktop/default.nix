@@ -1,7 +1,6 @@
 {inputs, ...}: {
   imports = [
     inputs.wsf.nixosModules.default
-    inputs.xross.nixosModules.default
   ];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -30,5 +29,4 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   programs.wsf.enable = true;
-  programs.xross.enable = true;
 }
