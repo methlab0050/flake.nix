@@ -82,7 +82,7 @@
             ];
           }
         ];
-        icon = "https://search.nixos.org/favicon.ico";
+        icon = "https://search.nixos.org/images/nixos-logomark-default-gradient-none.svg";
         updateInterval = 24 * 60 * 60 * 1000;
         definedAliases = ["@nix"];
       };
@@ -102,6 +102,23 @@
         icon = "https://crates.io/favicon.ico";
         updateInterval = 24 * 60 * 60 * 1000;
         definedAliases = ["@cargo"];
+      };
+
+      "npm" = {
+        urls = [
+          {
+            template = "https://www.npmjs.com/search";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+            ];
+          }
+        ];
+        icon = "https://nodejs.org/static/images/favicons/favicon.png";
+        updateInterval = 24 * 60 * 60 * 1000;
+        definedAliases = ["@npm"];
       };
     };
   };
